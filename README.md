@@ -1,1 +1,20 @@
-The Recommender Analysis System utilizes advanced machine learning algorithms, specifically Random Forest, to delve into personality traits based on user input. Crafted with Python, it boasts robust backend functionality, MySQL handles the intricate database management, while HTML/CSS orchestrates an engaging and intuitive frontend presentation. With this comprehensive tech stack, the system ensures a seamless and insightful user experience, making personality analysis both accurate and accessible.
+# Career Recommendation System
+
+## Project Overview
+
+The **Career Recommendation System** is a machine learning-based project that aims to recommend career paths and courses to individuals based on their skills, aspirations, and academic background. The system uses personalized recommendations to guide users toward suitable career options and educational paths.
+
+## Features
+
+- **Personalized Career Recommendations**: Based on the user's skills, academic records, and career aspirations.
+- **Course Suggestions**: Recommends courses to enhance skills aligned with desired careers.
+- **Admin Dashboard**: Allows administrators to manage users, view recommendations, and analyze data.
+  
+## Technologies Used
+
+- **Programming Languages**: Python, HTML, CSS
+- **Frameworks**: Flask
+- **Database**: MySQL
+- **Machine Learning Libraries**: Scikit-learn, TensorFlow
+- **Frontend**: HTML, CSS, BootStrap
+- **Version Control**: Git, GitHub
