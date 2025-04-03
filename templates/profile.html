@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: whitesmoke;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #f8f8f8;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #34495e;
+            color: #fff;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Profile Details</h2>
+        <table>
+            <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+            </tr>
+            <tr><td>ID</td><td>{{ user[0] }}</td></tr>
+            <tr><td>Name</td><td>{{ user[1] }}</td></tr>
+            <tr><td>Email</td><td>{{ user[2] }}</td></tr>
+            <tr><td>Mobile</td><td>{{ user[4] }}</td></tr>
+            <tr><td>Gender</td><td>{{ user[5] }}</td></tr>
+            <tr><td>Recommendation 1</td><td>{{ user[6] }}</td></tr>
+            <tr><td>Recommendation 2</td><td>{{ user[7] }}</td></tr>
+            <tr><td>Recommendation 3</td><td>{{ user[8] }}</td></tr>
+        </table>
+        <a href="{{ url_for('home', user_id=user_id, user_name=user_name) }}" class="back-button">Back</a>
+
+
+    </div>
+</body>
+</html>
+

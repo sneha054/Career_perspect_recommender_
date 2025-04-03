@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background: #222;
+            padding: 15px;
+            gap: 30px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: #444;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #fff;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-icon {
+            font-size: 80px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .student-info {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            background: white;
+            width: 600px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .dashboard p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Mobile */
+        @media screen and (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .dashboard {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{{ url_for('profile', user_id=user_id, user_name=user_name) }}">Profile</a>
+        <a href="{{ url_for('fill_form', user_id=user_id , user_name=user_name) }}">Take Test</a>
+        <a href="{{ url_for('update', user_id=user_id , user_name=user_name) }}">Update</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-icon">👤</div>
+            <div class="student-info">User ID: {{ user_id }}</div>
+            <div class="student-info">{{ user_name }}</div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <h2>Welcome, {{ user_name }}</h2>
+            <p>This is your student dashboard. Here, you can access your profile, take tests, and update your details.</p>
+            <p>Click on the options above to proceed.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

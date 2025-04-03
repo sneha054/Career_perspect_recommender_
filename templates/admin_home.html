@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            width: 80%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #222;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+        }
+
+        .logout-button {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .logout-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ admin_name }}</h1>
+    <h2>Admin User ID: {{ admin_id }}</h2>
+
+    <div class="container">
+        <div class="card">
+            <h2>Search Student by Email</h2>
+            <form action="{{ url_for('search_student', admin_id=admin_id, admin_name=admin_name) }}" method="POST">
+                <label for="searchEmail">Enter Email:</label>
+                <input type="text" id="searchEmail" name="email">
+                <button type="submit">Search</button>
+            </form>
+            
+            <h2>Select a Student</h2>
+            <form action="{{ url_for('fetch_student', admin_id=admin_id, admin_name=admin_name) }}" method="POST">
+                <label for="studentSelect">Select Student ID:</label>
+                <select id="studentSelect" name="studentID">
+                    <option value="select">Select</option>
+                    {% for user in id %}
+                        <option value="{{ user[0] }}">{{ user[0] }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Fetch Student</button>
+            </form>
+        </div>
+
+        <div class="card">
+            {% if student %}
+            <h2>Student Information</h2>
+            <table>
+                <tr><th>Attribute</th><th>Value</th></tr>
+                <tr><td>ID</td><td>{{ student[0] }}</td></tr>
+                <tr><td>Name</td><td>{{ student[1] }}</td></tr>
+                <tr><td>Email</td><td>{{ student[2] }}</td></tr>
+                <tr><td>Mobile</td><td>{{ student[4] }}</td></tr>
+                <tr><td>Gender</td><td>{{ student[5] }}</td></tr>
+                <tr><td>Recommendation 1</td><td>{{ student[6] }}</td></tr>
+                <tr><td>Recommendation 2</td><td>{{ student[7] }}</td></tr>
+                <tr><td>Recommendation 3</td><td>{{ student[8] }}</td></tr>
+            </table>
+            <form action="{{ url_for('delete_student', admin_id=admin_id, admin_name=admin_name) }}" method="POST">
+                <input type="hidden" name="studentID" value="{{ student[0] }}">
+                <button type="submit">Delete Student</button>
+            </form>
+            {% endif %}
+            {% if message %}<h2>{{ message }}</h2>{% endif %}
+        </div>
+    </div>
+
+    <a href="/logout" class="logout-button">Logout</a>
+</body>
+</html>

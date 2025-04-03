@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studies Recommendation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: whitesmoke;
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            background: white;
+            border: 1px solid #ccc;
+            color: black;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-control:focus {
+            background: #f8f9fa;
+            color: black;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            font-size: 18px;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+    <script>
+        function calculateScores() {
+            var scores = ['math_score', 'history_score', 'physics_score', 'chemistry_score', 'biology_score', 'english_score', 'geography_score'];
+            var totalScore = scores.reduce((sum, id) => sum + (parseFloat(document.getElementById(id).value) || 0), 0);
+            var averageScore = totalScore / scores.length;
+
+            document.getElementById("total_score").value = totalScore.toFixed(2);
+            document.getElementById("average_score").value = averageScore.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="heading">Fill in the details to get recommendations</div>
+    <h5 class="text-center">{{user_id}} | {{user_name}}</h5>
+    <form method="post" action="/store_values/{{user_id}}/{{user_name}}">
+
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select class="form-control" id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="part_time_job">Part-Time Job:</label>
+            <select class="form-control" id="part_time_job" name="part_time_job">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="absence_days">Absence Days:</label>
+            <input type="number" class="form-control" id="absence_days" name="absence_days">
+        </div>
+
+        <div class="form-group">
+            <label for="extracurricular_activities">Extracurricular Activities:</label>
+            <select class="form-control" id="extracurricular_activities" name="extracurricular_activities">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="weekly_self_study_hours">Weekly Self-Study Hours:</label>
+            <input type="number" class="form-control" id="weekly_self_study_hours" name="weekly_self_study_hours">
+        </div>
+
+        <div class="form-group">
+            <label for="math_score">Math Score:</label>
+            <input type="number" class="form-control" id="math_score" name="math_score" onchange="calculateScores()">
+        </div>
+
+        <div class="form-group">
+            <label for="history_score">History Score:</label>
+            <input type="number" class="form-control" id="history_score" name="history_score" onchange="calculateScores()">
+        </div>
+
+        <div class="form-group">
+            <label for="physics_score">Physics Score:</label>
+            <input type="number" class="form-control" id="physics_score" name="physics_score" onchange="calculateScores()">
+        </div>
+
+        <div class="form-group">
+            <label for="chemistry_score">Chemistry Score:</label>
+            <input type="number" class="form-control" id="chemistry_score" name="chemistry_score" onchange="calculateScores()">
+        </div>
+
+        <div class="form-group">
+            <label for="biology_score">Biology Score:</label>
+            <input type="number" class="form-control" id="biology_score" name="biology_score" onchange="calculateScores()">
+        </div>
+
+        <div class="form-group">
+            <label for="english_score">English Score:</label>
+            <input type="number" class="form-control" id="english_score" name="english_score" onchange="calculateScores()">
+        </div>
+
+        <div class="form-group">
+            <label for="geography_score">Geography Score:</label>
+            <input type="number" class="form-control" id="geography_score" name="geography_score" onchange="calculateScores()">
+        </div>
+
+        <div class="form-group">
+            <label for="total_score">Total Score:</label>
+            <input type="number" class="form-control" id="total_score" name="total_score" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="average_score">Average Score:</label>
+            <input type="number" step="0.000001" class="form-control" id="average_score" name="average_score" readonly>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
+
+
+
+
+

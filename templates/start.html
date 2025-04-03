@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personality Analysis System</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .mynav {
+        background: #333;
+        color: white;
+        font-weight: bold;
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .container {
+        max-width: 60%;
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .description {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 20px;
+    }
+
+    .button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 25px;
+        font-size: 18px;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <div class="mynav">Career Recommendation System</div>
+    <div class="container">
+        <div class="description">
+            <p>The Career Recommendation System provides personalized guidance based on your skills and interests. It helps users make informed decisions and pursue successful careers.</p>
+        </div>
+        <div class="button-container">
+            <a href="{{ url_for('login') }}" class="button">For Students</a>
+            <a href="{{ url_for('admin_login') }}" class="button">For Admin</a>
+        </div>
+    </div>
+</body>
+</html>
