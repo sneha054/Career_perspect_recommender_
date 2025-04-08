@@ -166,6 +166,7 @@ def profile(user_id,user_name):
     
 @app.route('/fill_form/<int:user_id>/<user_name>')
 def fill_form(user_id,user_name):
+    print("Fill form accessed for:", user_id, user_name)
     # Check if the user has already taken the test
     cursor.execute("SELECT COUNT(student_id) FROM results WHERE student_id = %s", (user_id,))
     count = cursor.fetchone()
